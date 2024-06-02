@@ -1,0 +1,50 @@
+{% extends 'father.html' %}
+
+
+{% block pagecontent %}
+  
+<!-- Main Content-->
+<div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+
+            <p> Busqueda: {{name}}</p>
+            
+            <h1> Lista Mesas </h1>
+            <hr class="my-4" />
+
+            {% for table in table_list %}
+
+            <div class="post-preview">
+                <h3>{{table.name}}</h3>
+
+                <h6>Fecha: {{table.date}}</h6>
+
+                <p>Descripcion: {{table.description}}</p>
+                <p>Cantidad maxima de jugadores: {{table.max_players}}</p>
+                <p>Lugares disponibles: {{table.free_places}}</p>
+
+                
+                {% comment %} {% if table.free_places !=  0 %}
+
+                    <form method="post">{% csrf_token %}
+
+                        {{ my_form.as_p }}
+                        <button type="submit">Agreagar jugador</button>
+
+                    </form>
+                {% endif %} {% endcomment %}
+                    
+
+                <hr class="my-4" />
+            </div>
+
+
+            <a   href="{% url 'tables' %}">
+                <button type="button">Volver</button>
+            </a>
+        </div>
+    </div>
+</div>
+
+{% endblock pagecontent %}
